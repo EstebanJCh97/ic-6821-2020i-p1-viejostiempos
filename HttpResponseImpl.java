@@ -61,7 +61,7 @@ class HttpResponseImpl implements HttpResponse {
     }
 
 
-    public OutputStream getoutputStream() {
+    public OutputStream getOutputStream() {
 
 
         String statusMessage2 = this.statusMessage;
