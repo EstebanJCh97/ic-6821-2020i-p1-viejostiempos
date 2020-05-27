@@ -120,7 +120,4 @@ class HttpResponseImpl implements HttpResponse {
         }
         return union;
     }
-
-
-
 }
