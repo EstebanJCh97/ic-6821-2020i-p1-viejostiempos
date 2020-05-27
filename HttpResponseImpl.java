@@ -1,8 +1,10 @@
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,13 +16,31 @@ class HttpResponseImpl implements HttpResponse {
     private String statusMessage;
     private Map<String, String> header;
     private OutputStream body;
+    private OutputStream bodyAux;
+
+
 
 
     public HttpResponseImpl() {
         this.header = new HashMap<String, String>();
     }
-    public void setMessageBody(OutputStream body) {
+    
+    
+    public void setMessageBody(InputStream bodyAux) throws IOException {
+
+
+        OutputStream body = new ByteArrayOutputStream();
+
+        int nRead;
+        byte[] data = new byte[16384];
+
+        while ((nRead = bodyAux.read(data, 0, data.length)) != -1) {
+            body.write(data, 0, nRead);
+        }
+
         this.body = body;
+
+
     }
 
     public void setVersion(String version) {
