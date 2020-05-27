@@ -18,9 +18,6 @@ class HttpResponseImpl implements HttpResponse {
     private OutputStream body;
     private OutputStream bodyAux;
 
-
-
-
     public HttpResponseImpl() {
         this.header = new HashMap<String, String>();
     }
